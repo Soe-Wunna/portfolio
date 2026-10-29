@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soe Wunna | Backend &amp; DevOps</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <a href="#top" class="logo">Soe Wunna</a>
+
+        <button type="button" class="menu-toggle" aria-label="Open Navigation menu"
+            aria-expanded="false" aria-controls="site-nav">
+            Menu
+        </button>
+
+        <nav id="site-nav" class="site-nav" aria-label="Main Navigation">
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>   
+        </nav>
+
+        <button type="button" class="theme-toggle" aria-label="Switch to dark theme" aria-pressed="false">
+            Dark
+        </button>
+    </header>
+
+    <main id="top">
+        <section id="hero" class="hero">
+            <h1>Name</h1>
+            <p>I am a software engineering student focusing on DevOps and Backend.</p>
+            <a href="#projects" class="button">View my work</a>
+        </section>
+
+        <section id="about" aria-labelledby="about-heading">
+            <h2 id="about-heading">About Me</h2>
+            <p>I am a software engineer student studying at University. I would like to become backend developer and 
+                DevOps after graduation.
+            </p>
+        </section>
+
+        <section id="skills" aria-labelledby="skills-heading">
+            <h2 id="skills-heading">Skills</h2>
+            <ul class="skills-list">
+                <li>Backend stack: Node.js, express.js, postgresql</li>
+                <li>Docker: still learning deployment</li>
+            </ul>
+        </section>
+
+        <section id="projects" aria-labelledby="projects-heading">
+            <h2 id="projects-heading">Projects</h2>
+            <div class="filters" role="group" aria-label="Filter projects by category">
+                <!-- filter buttons will be created by JavaScript -->
+            </div>
+            <p id="results-count" aria-live="polite"></p>
+            <div id="project-list" class="project-grid">
+                <!-- project cards will be created by JavaScript -->
+            </div>
+        </section>
+
+        <section id="contact" aria-labelledby="contact-heading">
+            <h2 id="contact-heading">Contact</h2>
+            <p>Email me at <a href="mailto:my@email.com">my@email.com</a> or use the demo form below.</p>
+            
+            <form id="contact-form" novalidate>
+                <div class="field">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" autocomplete="name"
+                        aria-describedby="name-error" required>
+                    <p class="error" id="email-error"></p>
+                </div>
+
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" autocomplete="email"
+                        aria-describedby="email-error" required>
+                    <p class="error" id="email-error"></p>
+                </div>
+
+                <div class="field">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="6"
+                              aria-describedby="message-error message-count" required></textarea>
+                    <p class="count" id="message-count">0 / 500</p>
+                    <p class="error" id="message-error"></p>
+                </div>
+
+                <button type="submit" class="button">Send Message</button>
+                <p id="form-status" role="status"></p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <ul class="social-links">
+            <li><a href="https://github.com/Soe-Wunna">GitHub</a></li>
+            <li><a href="#">LinkedIn</a></li>
+        </ul>
+        <p>&copy; 2026 Soe Wunna</p>
+    </footer>
+</body>
+</html>
