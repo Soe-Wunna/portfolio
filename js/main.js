@@ -31,3 +31,11 @@ document.addEventListener("keydown", (event) => {
         menuButton.focus();
     }
 })
+
+const desktopQuery = window.matchMedia("(min-width: 768px)");
+
+desktopQuery.addEventListener("change", (event) => {
+    if (event.matches) {
+        setMenuOpen(false);
+    }
+});
