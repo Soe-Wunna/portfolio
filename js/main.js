@@ -16,3 +16,18 @@ menuButton.addEventListener("click", () => {
     const isOpen = siteNav.classList.contains("open");
     setMenuOpen(!isOpen);
 })
+
+const navLinks = siteNav.querySelectorAll("a");
+
+navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+        setMenuOpen(false);
+    })
+})
+
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && siteNav.classList.contains("open")) {
+        setMenuOpen(false);
+        menuButton.focus();
+    }
+})
