@@ -49,14 +49,37 @@ function initThemeToggle() {
 
     function applyTheme(theme) {
         root.setAttribute("data-theme", theme);
-        themeButton.setAttribute("aria-pressed", String(theme === "dark"))
-    };
+        themeButton.setAttribute("aria-pressed", String(theme === "dark"));
+    }
 
-    applyTheme("light");
+    const STORAGE_KEY = "theme";
+
+    function getSavedTheme() {
+        try {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            return saved === "dark" || saved === "light" ? saved : null;
+        } catch (error) {
+            return null;
+        }
+    }
+
+    function saveTheme(theme) {
+        try {
+            localStorage.setItem(STORAGE_KEY, theme);
+        } catch (error) {
+            // storage unavailable: the theme still works for this visit
+        }
+    }
+
+    applyTheme(getSavedTheme() ?? "light");
+
     themeButton.addEventListener("click", () => {
-        const currentTheme = root.getAttribute("data-theme");
-        applyTheme(currentTheme === "dark" ? "light" : "dark");
+        const current = root.getAttribute("data-theme");
+        const next = current === "dark" ? "light" : "dark";
+        applyTheme(next);
+        saveTheme(next);
     });
 };
 
 initThemeToggle();
+
