@@ -42,3 +42,21 @@ function initMobileMenu() {
 
 initMobileMenu();
 
+// ===== Theme toggle =====
+function initThemeToggle() {
+    const themeButton = document.querySelector(".theme-toggle");
+    const root = document.documentElement;
+
+    function applyTheme(theme) {
+        root.setAttribute("data-theme", theme);
+        themeButton.setAttribute("aria-pressed", String(theme === "dark"))
+    };
+
+    applyTheme("light");
+    themeButton.addEventListener("click", () => {
+        const currentTheme = root.getAttribute("data-theme");
+        applyTheme(currentTheme === "dark" ? "light" : "dark");
+    });
+};
+
+initThemeToggle();
