@@ -1,4 +1,113 @@
 
+// ===== Project data =====
+const projects = [
+    {
+        title: "Personal Portfolio",
+        description: "This site: a responsive portfolio built with plain HTML, CSS and JavaScript.",
+        category: "Websites",
+        technologies: ["HTML", "CSS", "JavaScript"],
+        url: "https://github.com/Soe-Wunna/portfolio"
+    },
+    {
+        title: "Badminton project",
+        description: "A responsive school badminton tournament full stack website",
+        category: "Full stack Websites",
+        technologies: ["React", "PostgreSQL", "Node.js"],
+        url: ""
+    },
+    {
+        title: "E-commerce",
+        description: "Still in progress: only backend site of an E-commerce website",
+        category: "Backend",
+        technologies: ["Node.js", "Mongodb", "Express.js"],
+        url: ""
+    },
+    {
+        title: "To-do-List App",
+        description: "To do list app.",
+        category: "Application",
+        technologies: ["HTML", "CSS", "JavaScript"],
+        url: ""
+    }
+]
+
+// ===== Project cards =====
+function createProjectCard(project) {
+    const card = document.createElement("article");
+    card.className = "project-card";
+
+    const title = document.createElement("h3");
+    title.textContent = project.title;
+
+    const description = document.createElement("p");
+    description.textContent = project.description;
+
+    const techList = document.createElement("ul");
+    techList.className = "tech-list";
+    project.technologies.forEach((tech) => {
+        const item = document.createElement("li");
+        item.textContent = tech;
+        techList.append(item);
+    })
+
+    const link = document.createElement("a");
+    link.className = "button";
+    link.href = project.url;
+    link.textContent = `View ${project.title}`;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+
+    card.append(title, description, techList, link);
+    return card;
+}
+
+function renderProjects(list) {
+    const container = document.querySelector("#project-list");
+    container.replaceChildren();
+
+    list.forEach((project) => {
+        container.append(createProjectCard(project));
+    })
+}
+renderProjects(projects);
+
+// ===== Project filters =====
+function initProjectFilters() {
+    const filterGroup = document.querySelector(".filters");
+    const resultsCount = document.querySelector("#results-count");
+
+    const categories = ["All", ...new Set(projects.map((project) => project.category))];
+
+    function applyFilter(category) {
+        const visible = category === "All"
+            ? projects
+            : projects.filter((project) => project.category === category);
+
+        renderProjects(visible);
+
+        resultsCount.textContent = `Showing ${visible.length} of ${projects.length} projects`;
+
+        filterGroup.querySelectorAll("button").forEach((button) => {
+            button.setAttribute("aria-pressed", String(button.textContent === category));
+        });
+    }
+
+    categories.forEach((category) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "filter-button";
+        button.textContent = category;
+        button.setAttribute("aria-pressed", "false");
+        button.addEventListener("click", () => applyFilter(category));
+        filterGroup.append(button);
+    });
+
+
+    applyFilter("All");
+}
+
+initProjectFilters();
+
 
 // ===== Mobile menu =====
 function initMobileMenu() {
