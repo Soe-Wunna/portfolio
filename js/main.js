@@ -11,21 +11,21 @@ const projects = [
     {
         title: "Badminton project",
         description: "A responsive school badminton tournament full stack website",
-        category: "Websites",
+        category: "Full stack Websites",
         technologies: ["React", "PostgreSQL", "Node.js"],
         url: ""
     },
     {
         title: "E-commerce",
         description: "Still in progress: only backend site of an E-commerce website",
-        category: "Websites",
+        category: "Backend",
         technologies: ["Node.js", "Mongodb", "Express.js"],
         url: ""
     },
     {
         title: "To-do-List App",
         description: "To do list app.",
-        category: "Websites",
+        category: "Application",
         technologies: ["HTML", "CSS", "JavaScript"],
         url: ""
     }
@@ -69,7 +69,45 @@ function renderProjects(list) {
         container.append(createProjectCard(project));
     })
 }
-renderProjects(projects)
+renderProjects(projects);
+
+// ===== Project filters =====
+function initProjectFilters() {
+    const filterGroup = document.querySelector(".filters");
+    const resultsCount = document.querySelector("#results-count");
+
+    const categories = ["All", ...new Set(projects.map((project) => project.category))];
+
+    function applyFilter(category) {
+        const visible = category === "All"
+            ? projects
+            : projects.filter((project) => project.category === category);
+
+        renderProjects(visible);
+
+        resultsCount.textContent = `Showing ${visible.length} of ${projects.length} projects`;
+
+        filterGroup.querySelectorAll("button").forEach((button) => {
+            button.setAttribute("aria-pressed", String(button.textContent === category));
+        });
+    }
+
+    categories.forEach((category) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "filter-button";
+        button.textContent = category;
+        button.setAttribute("aria-pressed", "false");
+        button.addEventListener("click", () => applyFilter(category));
+        filterGroup.append(button);
+    });
+
+
+    applyFilter("All");
+}
+
+initProjectFilters();
+
 
 // ===== Mobile menu =====
 function initMobileMenu() {
