@@ -108,6 +108,65 @@ function initProjectFilters() {
 
 initProjectFilters();
 
+// ===== Contact form =====
+function initContactForm() {
+    const form = document.querySelector("#contact-form");
+    const status = document.querySelector("#form-status");
+    const counter = document.querySelector("#message-count");
+
+    const fields = {
+        name: document.querySelector("#name"),
+        email: document.querySelector("#email"),
+        message: document.querySelector("#message")
+    };
+
+    const validators = {
+        name: (value) =>
+            value.length >= 2 ? "" : "Please enter a name at least 2 characters",
+        email: (value) =>
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? "" : "Please enter a valid email address, like name@example.com.",
+        message: (value) => {
+            if (value.length < 20) return `Message must be at least 20 characters (now ${value.length}).`;
+            if (value.length > 500) return `Message must be 500 characters or fewer (now ${value.length}).`;
+            return "";
+        }
+    };
+
+    function validateField(name) {
+        const field = fields[name];
+        const errorElement = document.querySelector(`#${name}-error`);
+        const errorMessage = validators[name](field.value.trim());
+
+        errorElement.textContent = errorMessage;
+
+        if (errorMessage) {
+            field.setAttribute("aria-invalid", "true");
+        } else {
+            field.removeAttribute("aria-invalid");
+        }
+        return errorMessage === "";
+    }
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        status.textContent = "";
+
+        const names = Object.keys(fields);
+        const results = names.map((name) => validateField(name));
+        const firstInvalid = names.find((name, index) => !results[index]);
+
+        if (firstInvalid) {
+            fields[firstInvalid].focus();
+            return;
+        }
+
+        status.textContent = "Demo only. Your message has not been sent.";
+    })
+}
+initContactForm();
+
+
+
 
 // ===== Mobile menu =====
 function initMobileMenu() {
