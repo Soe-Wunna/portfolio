@@ -161,7 +161,19 @@ function initContactForm() {
         }
 
         status.textContent = "Demo only. Your message has not been sent.";
-    })
+
+        Object.keys(fields).forEach((name) => {
+            fields[name].addEventListener("input", () => {
+                if (fields[name].hasAttribute("aria-invalid")) {
+                    validateField(name);
+                }
+            });
+        });
+    });
+
+    fields.message.addEventListener("input", () => {
+        counter.textContent = `${fields.message.value.trim().length} / 500`;
+    });
 }
 initContactForm();
 
