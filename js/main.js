@@ -18,14 +18,14 @@ const projects = [
     {
         title: "Shopping List",
         description: "Mini shopping list app to be used in shopping.",
-        category: "Application",
+        category: "JavaScript Application",
         technologies: ["HTML", "CSS", "JavaScript"],
         url: "https://github.com/Soe-Wunna/shopping-list"
     },
     {
         title: "E-commerce Platform",
         description: "Still in PROGRESS! Backend part of an e-commerce platform.",
-        category: "Backend",
+        category: "Backend Project",
         technologies: ["Node.js", "Express.js", "MongoDB",],
         url: "https://github.com/Soe-Wunna/e-commerce-platform"
     }
