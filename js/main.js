@@ -9,27 +9,27 @@ const projects = [
         url: "https://github.com/Soe-Wunna/portfolio"
     },
     {
-        title: "Badminton project",
-        description: "A responsive school badminton tournament full stack website",
-        category: "Full stack Websites",
-        technologies: ["React", "PostgreSQL", "Node.js"],
-        url: ""
+        title: "Music Player",
+        description: "A music player built with HTML, CSS & JavaScript to play songs.",
+        category: "Web application",
+        technologies: ["HTML", "CSS", "JavaScript"],
+        url: "https://github.com/Soe-Wunna/music-player"
     },
     {
-        title: "E-commerce",
-        description: "Still in progress: only backend site of an E-commerce website",
-        category: "Backend",
-        technologies: ["Node.js", "Mongodb", "Express.js"],
-        url: ""
-    },
-    {
-        title: "To-do-List App",
-        description: "To do list app.",
+        title: "Shopping List",
+        description: "Mini shopping list app to be used in shopping.",
         category: "Application",
         technologies: ["HTML", "CSS", "JavaScript"],
-        url: ""
+        url: "https://github.com/Soe-Wunna/shopping-list"
+    },
+    {
+        title: "E-commerce Platform",
+        description: "Still in PROGRESS! Backend part of an e-commerce platform.",
+        category: "Backend",
+        technologies: ["Node.js", "Express.js", "MongoDB",],
+        url: "https://github.com/Soe-Wunna/e-commerce-platform"
     }
-]
+];
 
 // ===== Project cards =====
 function createProjectCard(project) {
@@ -122,7 +122,7 @@ function initContactForm() {
 
     const validators = {
         name: (value) =>
-            value.length >= 2 ? "" : "Please enter a name at least 2 characters",
+            value.length >= 2 ? "" : "Please enter a name with at least 2 characters",
         email: (value) =>
             /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? "" : "Please enter a valid email address, like name@example.com.",
         message: (value) => {
@@ -161,23 +161,22 @@ function initContactForm() {
         }
 
         status.textContent = "Demo only. Your message has not been sent.";
+    });
 
-        Object.keys(fields).forEach((name) => {
-            fields[name].addEventListener("input", () => {
-                if (fields[name].hasAttribute("aria-invalid")) {
-                    validateField(name);
-                }
-            });
+    Object.keys(fields).forEach((name) => {
+        fields[name].addEventListener("input", () => {
+            if (fields[name].hasAttribute("aria-invalid")) {
+                validateField(name);
+            }
         });
     });
 
     fields.message.addEventListener("input", () => {
         counter.textContent = `${fields.message.value.trim().length} / 500`;
     });
-}
+};
+
 initContactForm();
-
-
 
 
 // ===== Mobile menu =====
