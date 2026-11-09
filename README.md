@@ -147,6 +147,13 @@ No build tools, bundlers, or package managers (such as npm, webpack, or Vite) ar
 
 ---
 
+## Screenshots
+
+![Desktop view of the portfolio](assets/desktop.png)
+![Mobile view of the portfolio](assets/mobile.png)
+
+---
+
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
